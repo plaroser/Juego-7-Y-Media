@@ -7,12 +7,12 @@ public class Carta {
 	private String[] nombreCarta;
 
 	public Carta(int numero, int palo) {
-		String[] cartas = { "as", "dos", "tres", "cuatro", "cinco", "seis", "siete", "Sota", "Caballo", "Rey" };
+		String[] cartas = { "As", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete", "Sota", "Caballo", "Rey" };
 		this.nombreCarta = cartas;
 		String[] palos = { "Bastos", "Copas", "Espadas", "Oros" };
 		this.nombrePalo = palos;
-		this.numero = numero-1;
-		this.palo = palo-1;
+		this.numero = numero;
+		this.palo = palo;
 	}
 
 	/**
@@ -23,7 +23,7 @@ public class Carta {
 	 * @param identificador
 	 */
 	public Carta(int identificador) {
-		this ((identificador % 10), (identificador / 10));
+		this((identificador % 10), (identificador / 10));
 	}
 
 	/**
@@ -41,17 +41,27 @@ public class Carta {
 	}
 
 	public int getNumero() {
-		return this.numero +1;
+		return this.numero;
 	}
 
 	public int getPalo() {
-		return this.palo+1;
+		return this.palo;
 	}
 
+	/**
+	 * Muestra el mobre del palo correspondiente con la carta
+	 * 
+	 * @return devuelve el nombre del palo
+	 */
 	public String getNombrePalo() {
 		return nombrePalo[this.palo];
 	}
 
+	/**
+	 * Muestra el nombre de la figura correspondiente con la carta
+	 * 
+	 * @return devuelve el nombre de la figura
+	 */
 	public String getNombreCarta() {
 		return nombreCarta[this.numero];
 	}
@@ -80,6 +90,10 @@ public class Carta {
 		}
 	}
 
+	/**
+	 * Muetra el valor de la carta
+	 * @return devuelve el valor de la carta en el juego del Mus
+	 */
 	public int getValorMus() {
 		if (this.numero == 1 || this.numero == 2) {
 			return 1;
@@ -90,17 +104,23 @@ public class Carta {
 		}
 	}
 
+	/**
+	 * 
+	 * @return Devuelve el calor de la carta en el juego de las 7 y media
+	 */
 	public float getValor7yMedia() {
-		if (this.numero >= 8 && this.numero <= 10) {
+		if (this.numero >= 7 && this.numero <= 9) {
 			return 0.5f;
 		} else {
-			return (float) this.numero;
+			return (float) this.numero + 1;
 		}
 	}
 
+	/**
+	 * Devuelve el nombre completo de la carta
+	 */
 	@Override
 	public String toString() {
-		//return "+++";
-		return getNombreCarta()+" de "+getNombrePalo();
+		return "- "+this.getNombreCarta() + " de " + this.getNombrePalo();
 	}
 }
